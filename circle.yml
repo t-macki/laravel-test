@@ -6,7 +6,6 @@ machine:
     - mysql
 dependencies:
   pre:
-    - rm .env
     - cp .env.circleci .env
     - chmod -R 777 storage
     - sudo composer self-update
