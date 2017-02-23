@@ -6,10 +6,11 @@ machine:
 #    - mysql
 dependencies:
   pre:
-    - cp .env.circleci .env
     - chmod -R 777 storage
   override:
-    - composer install --prefer-source --no-interaction --no-dev
+    - composer install --prefer-source --no-interaction
+  post:
+    - cp .env.circleci .env
 database:
   post:
     - php artisan migrate:refresh --force
