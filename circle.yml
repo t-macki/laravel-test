@@ -2,13 +2,12 @@ machine:
   timezone: Asia/Tokyo
   php:
     version: 7.0.7
-  services:
-    - mysql
+#  services:
+#    - mysql
 dependencies:
   pre:
     - cp .env.circleci .env
     - chmod -R 777 storage
-    - sudo composer self-update
   override:
     - composer install --prefer-source --no-interaction --no-dev
 database:
