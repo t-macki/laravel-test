@@ -27,7 +27,7 @@ class UserServiceTest extends TestCase
         factory(User::class, 30)->create();
 
         $users = $this->service->find([
-            'name' => 'Mr'
+            'name' => 'M'
         ]);
 //        print_r($users);
         $this->assertNotEmpty($users);
