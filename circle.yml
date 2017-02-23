@@ -1,0 +1,22 @@
+machine:
+  timezone: Asia/Tokyo
+  php:
+    version: 7.0.7
+  services:
+    - mysql
+dependencies:
+  pre:
+    - rm .env
+    - cp .env.circleci .env
+    - chmod -R 777 storage
+    - sudo composer self-update
+  override:
+    - composer install --prefer-source --no-interaction --no-dev
+database:
+  post:
+    - php artisan migrate:refresh --force
+#    - php artisan db:seed
+test:
+  override:
+    - php vendor/bin/phpunit
+#    - vendor/bin/phpunit --configuration phpunit.xml.dist --log-junit $CIRCLE_TEST_REPORTS/phpunit/junit.xml

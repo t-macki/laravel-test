@@ -20,6 +20,14 @@
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./app</directory>
+            <exclude>
+                <directory>./app/Providers</directory>
+                <directory suffix="Interface.php">./app</directory>
+                <file>./app/Http/Kernel.php</file>
+                <file>./app/Http/Controllers/Controller.php</file>
+                <file>./app/Http/Middleware/RedirectIfAuthenticated.php</file>
+                <file>./app/Http/Middleware/VerifyCsrfToken.php</file>
+            </exclude>
         </whitelist>
     </filter>
     <php>
@@ -27,5 +35,22 @@
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
+        <!--
+            envを利用してLaravelの設定ファイルに記述している値を変更できます
+            この機能を使う場合は、.envファイルなどを利用して、各configファイルでenvヘルパー関数を利用して指定します
+            envヘルパー関数は.envファイルを読むよりも先にgetenvが実行されます
+            下記の指定は、
+            config/database.phpのdefaultキーDB_CONNECTIONに対して、テスト時にtestingへ向くように指定しています
+            同様にconfig/broadcasting.phpのdefaultキーBROADCAST_DRIVERに対して指定しています
+        -->
+        <env name="DB_CONNECTION" value="testing"/>
+        <env name="DB_DATABASE" value="homesteadtest"/>
+        <env name="BROADCAST_DRIVER" value="log"/>
+
     </php>
+    <logging>
+        <log type="coverage-html" target="tests/build/report" lowUpperBound="35" highLowerBound="70"/>
+        <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
+        <log type="coverage-clover" target="tests/build/clover.xml"/>
+    </logging>
 </phpunit>

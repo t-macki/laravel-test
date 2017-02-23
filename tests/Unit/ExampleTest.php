@@ -8,6 +8,10 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ExampleTest extends TestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+    }
     /**
      * A basic test example.
      *
@@ -17,4 +21,9 @@ class ExampleTest extends TestCase
     {
         $this->assertTrue(true);
     }
+
+    public function tearDown() {
+        parent::tearDown();
+    }
+
 }
