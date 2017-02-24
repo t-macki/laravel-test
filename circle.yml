@@ -5,6 +5,8 @@ machine:
 #  services:
 #    - mysql
 dependencies:
+  cache_directories:
+      - ~/.composer/cache
   pre:
     - chmod -R 777 storage
   override:
