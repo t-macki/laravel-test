@@ -1,0 +1,19 @@
+build:
+  environment:
+    mysql: 5.7
+    php:
+      version: 7.0.7
+      ini:
+        'date.timezone': 'Asia/Tokyo'
+
+  project_setup:
+    before:
+      - mysql -e 'create database test'
+
+  dependencies:
+    before:
+      - cp .env.scrutinizer .env
+      - rm .env.testing
+      - chmod -R 777 storage
+      - composer install --prefer-source --no-interaction
+      - cp .env.travis .env
