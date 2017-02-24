@@ -11,6 +11,7 @@ dependencies:
     - composer install --prefer-source --no-interaction
   post:
     - cp .env.circleci .env
+    - rm .env.testing
 database:
   post:
 #    - php artisan migrate:refresh --force
