@@ -16,4 +16,3 @@ build:
       - rm .env.testing
       - chmod -R 777 storage
       - composer install --prefer-source --no-interaction
-      - cp .env.travis .env
