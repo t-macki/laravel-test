@@ -13,7 +13,7 @@ dependencies:
     - cp .env.circleci .env
 database:
   post:
-    - php artisan migrate:refresh --force
+#    - php artisan migrate:refresh --force
 #    - php artisan db:seed
 test:
   override:

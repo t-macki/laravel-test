@@ -24,6 +24,7 @@
                 <directory>./app/Providers</directory>
                 <directory suffix="Interface.php">./app</directory>
                 <file>./app/Http/Kernel.php</file>
+                <file>./app/Console/Kernel.php</file>
                 <file>./app/Http/Controllers/Controller.php</file>
                 <file>./app/Http/Middleware/RedirectIfAuthenticated.php</file>
                 <file>./app/Http/Middleware/VerifyCsrfToken.php</file>
@@ -43,8 +44,12 @@
             config/database.phpのdefaultキーDB_CONNECTIONに対して、テスト時にtestingへ向くように指定しています
             同様にconfig/broadcasting.phpのdefaultキーBROADCAST_DRIVERに対して指定しています
         -->
-        <env name="DB_CONNECTION" value="testing"/>
         <env name="BROADCAST_DRIVER" value="log"/>
+        <!--
+        <env name="DB_CONNECTION" value="testing"/>
+        ローカルでテストする時は以下を有効にする
+        <env name="DB_DATABASE" value="homesteadtest"/>
+        -->
 
     </php>
     <logging>

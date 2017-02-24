@@ -10,7 +10,7 @@ use Log;
 
 class UserServiceTest extends TestCase
 {
-    use DatabaseMigrations;
+//    use DatabaseMigrations;
 
     /** @var UserService */
     protected $service;

@@ -3,6 +3,7 @@
 namespace Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\Facades\Artisan;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -20,5 +21,20 @@ abstract class TestCase extends BaseTestCase
 
         $path = base_path('tests/logs/test.log');
         \Log::useFiles($path);
+    }
+
+    public function setUp()
+    {
+        parent::setUp();
+//        App::setLocale('en');
+//        config(['database.connections.testing.database' => 'homesteadtest']);
+
+        Artisan::call('migrate:refresh');
+        Artisan::call('db:seed');
+    }
+
+    public function tearDown()
+    {
+//        Artisan::call('migrate:reset');
     }
 }
