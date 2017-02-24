@@ -16,3 +16,10 @@ build:
       - rm .env.testing
       - chmod -R 777 storage
       - composer install --prefer-source --no-interaction
+  tests:
+      override:
+          -
+              command: 'vendor/bin/phpunit --coverage-clover=tests/clover.xml'
+              coverage:
+                  file: 'build/logs/clover.xml'
+                  format: 'clover'
