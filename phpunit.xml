@@ -45,10 +45,10 @@
             同様にconfig/broadcasting.phpのdefaultキーBROADCAST_DRIVERに対して指定しています
         -->
         <env name="BROADCAST_DRIVER" value="log"/>
-        <!--
         <env name="DB_CONNECTION" value="testing"/>
-        ローカルでテストする時は以下を有効にする
         <env name="DB_DATABASE" value="homesteadtest"/>
+        <!--
+        ローカルでテストする時は以下を有効にする
         -->
 
     </php>

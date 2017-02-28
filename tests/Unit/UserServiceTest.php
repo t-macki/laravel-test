@@ -1,6 +1,7 @@
 <?php
 namespace Tests\Unit;
 
+use App\Domain\Repositories\UserRepositoryInterface;
 use App\Domain\Services\UserService;
 use App\Infrastructure\Eloquents\User;
 use App\Infrastructure\Repositories\UserRepository;
@@ -20,6 +21,9 @@ class UserServiceTest extends TestCase
         parent::setUp();
         $this->registerTestLogger();
         $this->service = new UserService(new UserRepository(new User()));
+
+        // スタブを使う場合
+//        $this->service = new UserService(new StubUserRepository());
     }
 
     public function testUserRegister()
@@ -33,3 +37,17 @@ class UserServiceTest extends TestCase
         $this->assertNotEmpty($users);
     }
 }
+
+
+// スタブを使う場合
+//class StubUserRepository implements UserRepositoryInterface
+//{
+//    public function findId($query){
+//        return factory(\App\Infrastructure\Eloquents\User::class)->make();
+//    }
+//
+//    public function find($query){
+//        return factory(\App\Infrastructure\Eloquents\User::class, 10)->make();
+//    }
+//
+//}

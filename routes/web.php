@@ -3,6 +3,9 @@
 Route::get('users', 'UserController@index');
 Route::get('user', 'UserController@find');
 
+Route::get('/upload', 'UploadController@uploadForm');
+Route::post('/upload', 'UploadController@uploadSubmit');
+
 Route::group(['middleware' => 'guest:web'], function () {
     Route::get('register', 'Auth\RegisterController@showRegistrationForm');
     Route::post('register', 'Auth\RegisterController@register');

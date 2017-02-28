@@ -4,13 +4,8 @@ namespace App\Infrastructure\Repositories;
 use App\Domain\Repositories\UserRepositoryInterface;
 use App\Infrastructure\Eloquents\User;
 
-class UserRepository implements UserRepositoryInterface
+class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
-    /**
-     * @var User
-     */
-    protected $eloquent;
-
     public function __construct(User $eloquent)
     {
         $this->eloquent = $eloquent;
@@ -21,8 +16,9 @@ class UserRepository implements UserRepositoryInterface
         return $this->eloquent->query()->find($query['id']);
     }
 
-    public function find($query)
+    public function findLike($query)
     {
+        \Log::debug("find -------------------");
         \Log::debug(print_r($query, true));
         $users = $this->eloquent->query()->where('name', 'LIKE', '%' . $query['name'] . '%')->get();
         \Log::debug($users);

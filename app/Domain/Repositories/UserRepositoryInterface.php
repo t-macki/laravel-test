@@ -6,4 +6,5 @@ interface UserRepositoryInterface
     public function findId($query);
 
     public function find($query);
+
 }

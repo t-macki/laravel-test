@@ -15,7 +15,7 @@ class UserService
 
     public function find($query)
     {
-        return $this->userRepository->find($query);
+        return $this->userRepository->findLike($query);
     }
 
     public function findId($query){

@@ -4,6 +4,11 @@ machine:
     version: 7.0.7
 #  services:
 #    - mysql
+  environment:
+    APP_ENV: test
+    DB_CONNECTION: circle_test
+    DB_DATABASE: circle_test
+    DB_USERNAME: ubuntu
 dependencies:
   cache_directories:
       - ~/.composer/cache
@@ -12,8 +17,9 @@ dependencies:
   override:
     - composer install --prefer-source --no-interaction
   post:
-    - cp .env.circleci .env
-    - rm .env.testing
+    - cp .env.example .env
+#    - cp .env.circleci .env
+#    - rm .env.testing
 database:
   post:
 #    - php artisan migrate:refresh --force

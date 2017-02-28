@@ -44,7 +44,28 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
+        if ($this->isExceptionType($exception, ImageUploadException::class)  && !config('app.debug')) {
+            $message = $this->getOriginalMessage($e);
+            $code = ($e->getCode() === 0) ? 500 : $e->getCode();
+            return response()->view('errors/' . $code, ['message' => $message], $code);
+        }
+
         return parent::render($request, $exception);
+    }
+
+    protected function isExceptionType(Exception $e, $type) {
+        do {
+            if (is_a($e, $type)) return true;
+        } while ($e = $e->getPrevious());
+        return false;
+    }
+
+    protected function getOriginalMessage(Exception $e) {
+        do {
+            $message = $e->getMessage();
+        } while ($e = $e->getPrevious());
+        return $message;
     }
 
     /**

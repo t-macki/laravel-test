@@ -35,5 +35,9 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Domain\Repositories\EntryRepositoryInterface::class,
             \App\Infrastructure\Repositories\EntryRepository::class
         );
+        $this->app->bind(
+            \App\Domain\Repositories\UploadRepositoryInterface::class,
+            \App\Infrastructure\Repositories\UploadRepository::class
+        );
     }
 }

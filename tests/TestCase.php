@@ -23,11 +23,25 @@ abstract class TestCase extends BaseTestCase
         \Log::useFiles($path);
     }
 
+    public function mock($class)
+    {
+        $mock = \Mockery::mock($class);
+        \App::instance($class, $mock);
+
+        return $mock;
+    }
+
     public function setUp()
     {
         parent::setUp();
 //        App::setLocale('en');
-//        config(['database.connections.testing.database' => 'homesteadtest']);
+//        $this->app['config']->set('app.url', 'http://localhost:9515');
+//        $this->app['config']->set('database.default', 'mysql');
+//        $this->app['config']->set('database.connections.mysql.host', 'localhost');
+//        $this->app['config']->set('database.connections.mysql.database', 'laravel_admin');
+//        $this->app['config']->set('database.connections.mysql.username', 'root');
+//        $this->app['config']->set('database.connections.mysql.password', '');
+//        $this->app['config']->set('app.key', 'AckfSECXIvnK5r28GVIWUAxmbBSjTsmF');
 
         Artisan::call('migrate:refresh');
         Artisan::call('db:seed');
